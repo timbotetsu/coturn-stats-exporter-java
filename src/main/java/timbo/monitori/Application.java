@@ -1,14 +1,20 @@
 package timbo.monitori;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.Banner;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.Configuration;
+import timbo.monitori.config.AppConfig;
 
-@SpringBootApplication
+@Configuration
+@EnableAutoConfiguration
 public class Application {
 
-    public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(Application.class);
-        app.run(args);
-    }
+  public static void main(String[] args) {
+    new SpringApplicationBuilder(AppConfig.class)
+      .bannerMode(Banner.Mode.OFF)
+      .run(args)
+      .getEnvironment();
+  }
 
 }

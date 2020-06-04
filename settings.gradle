@@ -1,8 +1,9 @@
 pluginManagement {
-    plugins {
-        id 'org.springframework.boot' version '2.3.0.RELEASE'
-        id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    }
+  plugins {
+    id 'io.freefair.lombok' version '5.1.0'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+  }
 }
 
 rootProject.name = 'coturn-stats-exporter-java'
