@@ -1,5 +1,9 @@
 package timbo.monitori.config;
 
+import com.github.benmanes.caffeine.cache.Caffeine;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.caffeine.CaffeineCache;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +14,8 @@ import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import timbo.monitori.coturn.CoturnStatListener;
+
+import java.util.Arrays;
 
 @Configuration
 @ComponentScan("timbo.monitori")
@@ -46,4 +52,11 @@ public class AppConfig {
     return container;
   }
 
+  @Bean
+  public CacheManager cacheManager() {
+    SimpleCacheManager caffeineCacheManager = new SimpleCacheManager();
+    CaffeineCache coturnStat = new CaffeineCache("coturnStat", Caffeine.newBuilder().build());
+    caffeineCacheManager.setCaches(Arrays.asList(coturnStat));
+    return caffeineCacheManager;
+  }
 }

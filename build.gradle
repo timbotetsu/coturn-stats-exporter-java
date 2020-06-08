@@ -42,6 +42,9 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
   implementation 'io.micrometer:micrometer-registry-prometheus'
+  implementation 'com.github.ben-manes.caffeine:caffeine'
+
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 wrapper {
